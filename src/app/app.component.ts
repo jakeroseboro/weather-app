@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { WeatherService } from 'src/services/weather.service';
@@ -8,21 +8,25 @@ import { WeatherService } from 'src/services/weather.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'weather-app';
   searchResult: string;
+  weatherData: any;
 
   constructor(
     public weatherSvc: WeatherService,
     public route: ActivatedRoute,
   ){};
 
-  async onSearch(){
-    let ress ={}
-    const result = this.weatherSvc.getWeatherForCity(this.searchResult).subscribe(res => {
-      ress = res;
-    }
+  ngOnInit(){
+    const response = this.weatherSvc.getWeatherForCity('Pensacola').subscribe(
+      data => {this.weatherData = data}
     )
-    console.log(result)
+  }
+
+  async onSearch(){
+    const response = this.weatherSvc.getWeatherForCity(this.searchResult).subscribe(
+      data => {this.weatherData = data}
+    )
   }
 }
