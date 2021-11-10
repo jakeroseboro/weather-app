@@ -1,26 +1,40 @@
+<div class="sunny" [ngClass]="getColor()"> 
+
+<div class="d-flex justify-content-center search-div">
+  <div style="width: 500px;">
+    <div>
+      <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+          <input [(ngModel)]="searchResult" type="text" nz-input placeholder="input search text" />
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+          <button nz-button nzType="primary" nzSearch (click)="onSearch()"><i nz-icon nzType="search"></i></button>
+      </ng-template>
+    </div>
+
+  </div>
+</div>
+
+
 <div class="d-flex justify-content-center">
-<div style="width: 500px;">
-<div>
-  <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-    <input [(ngModel)]="searchResult" type="text" nz-input placeholder="input search text" />
-  </nz-input-group>
-  <ng-template #suffixIconButton>
-    <button nz-button nzType="primary" nzSearch (click)="onSearch()"><i nz-icon nzType="search"></i></button>
-  </ng-template>
+
+    <div *ngIf="isValidResponse === true">
+      <div class="d-flex justify-content-center">
+       {{weatherData.name}}
+      </div>
+      <div class="d-flex justify-content-center">
+        {{weatherData.main.temp}}&deg;
+      </div>
+      <div class="d-flex justify-content-center">
+        What to wear
+      </div>
+      <div class="d-flex justify-content-center">
+        what to do 
+      </div>
+    </div>
+
+    <div *ngIf="isValidResponse === false">
+      Invalid Search Result
+    </div>
 </div>
-<div class="d-flex justify-content-center">
-</div>
-<div>
-  {{weatherData.dt ?? "hello"}}
-</div>
-<div class="d-flex justify-content-center">
-  Result
-</div>
-<div class="d-flex justify-content-center">
-  What to wear
-</div>
-<div class="d-flex justify-content-center">
-  what to do 
-</div>
-</div>
+
 </div>
