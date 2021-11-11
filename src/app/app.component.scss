@@ -3,6 +3,33 @@
     height: 100%;
 }
 
+.dark{
+    
+    background: linear-gradient(to right,#000000, #4c4ff2);
+    height: 100%;
+    h1{
+        text-transform: capitalize;
+        color: rgba(255, 255, 255, 0.671);
+        padding-top: 25px;
+    }
+    h3{
+        color:rgba(255, 255, 255, 0.671);
+        text-transform: capitalize;
+    }
+}
+
 .search-div{
-    padding-top: 250px;
+    padding-top: 25px;
+} 
+
+.weather-container{
+    padding-top: 50px;
+}
+
+.temp{
+    font-size: 100px;
+}
+
+.icon{
+    padding-bottom: 90px;
 }
