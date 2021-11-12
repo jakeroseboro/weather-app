@@ -13,6 +13,11 @@ export class AppComponent implements OnInit{
   title = 'weather-app';
   searchResult: string;
   weatherData: currentWeather;
+  day1:any;
+  day2:any;
+  day3:any;
+  day4:any;
+  day5:any;
   whatToWear: string;
   whatToDo: string;
 
@@ -22,8 +27,11 @@ export class AppComponent implements OnInit{
   ){};
 
   async ngOnInit(){
-    const response = await this.weatherSvc.getWeatherForCity('Pensacola').subscribe(
-      data => {this.weatherData = data, console.log(data)}
+    await this.weatherSvc.getWeatherForCity('Pensacola').subscribe(
+      data => {this.weatherData = data}
+    )
+    await this.weatherSvc.getForecast('Pensacola').subscribe(
+      data => {this.day1 = data, console.log(data)}
     )
   }
 
@@ -37,32 +45,29 @@ export class AppComponent implements OnInit{
     return `https://openweathermap.org/img/wn/${this.weatherData.weather[0].icon}@2x.png`
   }
 
-  getColor(){
-    if(this.weatherData.weather[0].main === "Clear" && this.weatherData.sys.sunset > this.weatherData.dt){
+  convertTime(num: number){
+    const date = new Date(num *1000)
+    return date.toLocaleTimeString('en-US');
+  }
+
+  toTextualDescription(degree: number){
+    if (degree>337.5) return 'Northerly';
+    if (degree>292.5) return 'North Westerly';
+    if(degree>247.5) return 'Westerly';
+    if(degree>202.5) return 'South Westerly';
+    if(degree>157.5) return 'Southerly';
+    if(degree>122.5) return 'South Easterly';
+    if(degree>67.5) return 'Easterly';
+    if(degree>22.5){return 'North Easterly';}
+    return 'Northerly';
+}
+
+getColor(){
+    if(this.weatherData.sys.sunset > this.weatherData.dt){
       return 'sunny'
     }
-    if(this.weatherData.weather[0].main === "Clear" && this.weatherData.sys.sunset < this.weatherData.dt){
+    if( this.weatherData.sys.sunset < this.weatherData.dt){
       return 'dark'
-    }
-    if(this.weatherData.weather[0].main === "Clouds" && this.weatherData.sys.sunset > this.weatherData.dt){
-      return 'clouds'
-    }
-    if(this.weatherData.weather[0].main === "Clouds" && this.weatherData.sys.sunset < this.weatherData.dt){
-      this.whatToWear="Pajamas";
-      this.whatToDo="Go to bed! It's too dark outside"
-      return 'dark'
-    }
-    if(this.weatherData.weather[0].main === "Snow"){
-      return 'snow'
-    }
-    if(this.weatherData.weather[0].main === "Rain"){
-      return 'rain'
-    }
-    if(this.weatherData.weather[0].main === "Drizzle"){
-      return 'drizzle'
-    }
-    if(this.weatherData.weather[0].main === "Thunderstorm"){
-      return 'thunder'
     }
     else return 'sunny'
   }

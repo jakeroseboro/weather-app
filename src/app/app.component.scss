@@ -1,6 +1,31 @@
 .sunny{
-    background: linear-gradient(to right,#f2994a, #f2c94c);
+    background: linear-gradient(to right, #56ccf2, #2f80ed);
     height: 100%;
+    .name{
+        padding: 0px;
+        margin: 0px;
+        font-size: 20px;
+        color: rgb(75, 69, 64);
+        text-transform: uppercase;
+    }
+    .description{
+        padding: 0px;
+        margin: 0px;
+        font-size: 15px;
+        color: rgb(75, 69, 64);
+        text-transform: capitalize;
+    }
+    .temp{
+        padding: 0px;
+        margin: 0px;
+        color: rgb(75, 69, 64);
+        font-size: 75px;
+    }
+    .ToDo{
+        font-size: 60px;
+        color: rgb(75, 69, 64);
+        text-transform: uppercase;
+    }
 }
 
 .dark{
@@ -17,19 +42,32 @@
         text-transform: capitalize;
     }
 }
-
-.search-div{
-    padding-top: 25px;
-} 
-
-.weather-container{
-    padding-top: 50px;
+.top-col{
+    height: 500px;
+    padding: 20px;
 }
 
-.temp{
-    font-size: 100px;
+.bottom-col{
+    height: 500px;
 }
 
-.icon{
-    padding-bottom: 90px;
+p{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.desc{
+    padding-top: 30px;
+    border-bottom: 1px solid rgb(75, 69, 64);
+}
+
+.data{
+    border-bottom: 1px solid rgb(75, 69, 64);
+}
+
+.feels-like{
+    padding-top: 45px;
+}
+
+.row1{
+    width: 750px;
 }

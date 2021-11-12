@@ -13,9 +13,14 @@ export class WeatherService {
   constructor(private http: HttpClient) {}
 
 getWeatherForCity(city: string){
-    let returnValue:any =null;
     const path = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=ffaeb9d6a2a7a5a97e460256526aabf5`;
     const responseData = this.http.get<currentWeather>(path, {responseType: 'json'})
+    return responseData
+  }
+
+getForecast(city: string){
+    const path = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&APPID=ffaeb9d6a2a7a5a97e460256526aabf5`;
+    const responseData = this.http.get(path, {responseType: 'json'})
     return responseData
   }
 }

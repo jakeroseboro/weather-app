@@ -1,5 +1,6 @@
 <div class="sunny" [ngClass]="getColor()"> 
-<div class="d-flex justify-content-center search-div">
+
+<!--  <div class="d-flex justify-content-center search-div">
   
   <div style="width: 500px;">
     <div>
@@ -27,6 +28,47 @@
         <h3 class="temp">{{weatherData.main.temp}}&deg; </h3>
       </div>
     </div>
-</div>
+</div>-->
 
+<div class="d-flex justify-content-center">
+<nz-row class="row1">
+  <nz-col nzSpan="24" class="top-col">
+    <!--Search Bar and Button-->
+    <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+      <input [(ngModel)]="searchResult" type="text" nz-input placeholder="Search by city" />
+    </nz-input-group>
+    <ng-template #suffixIconButton>
+      <button nz-button nzType="default" nzSearch (click)="onSearch()"><i nz-icon nzType="search" style="padding-bottom: 20px;"></i></button>
+    </ng-template>
+
+    <div class="d-block justify-content-left desc">
+      <p class="name"> {{weatherData.name}}</p>
+      <p class="description">{{weatherData.weather[0].main}} - {{weatherData.weather[0].description}}</p>
+     </div>
+     <div class="d-flex justify-content-between data">
+       <p class="temp">{{weatherData.main.temp}}&deg; </p>
+       <img [src]="getImage()">
+     </div>
+     <nz-row class="desc">
+       <nz-col nzSpan="12">
+        <p>H: {{weatherData.main.temp_max}}  &deg;</p>
+        <p>L: {{weatherData.main.temp_min}}  &deg;</p>
+        <p>Sunrise: {{convertTime(weatherData.sys.sunrise)}} </p>
+        <p>Sunset: {{convertTime(weatherData.sys.sunset)}} </p>
+      </nz-col>
+      <nz-col nzSpan="12">
+        <p>Feels like: {{weatherData.main.feels_like}} &deg;</p>
+        <p>Humidity: {{weatherData.main.humidity}}%</p>
+        <p>Pressure: {{weatherData.main.pressure * .0295}} inHg</p>
+        <p>Wind Speed: {{weatherData.wind.speed}} mph {{toTextualDescription(weatherData.wind.deg)}}</p>
+      </nz-col>
+     </nz-row>
+  </nz-col >
+</nz-row>
+</div>
+<nz-row nzSpan="24">
+  <nz-col class="top-col">
+3
+  </nz-col>
+</nz-row>
 </div>
