@@ -34,6 +34,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
+import { NzCardModule } from 'ng-zorro-antd/card';
 
 registerLocaleData(en);
 
@@ -62,6 +63,7 @@ const exportModules = [
   NzCheckboxModule,
   NzDatePickerModule,
   NzTimePickerModule,
+  NzCardModule,
 ];
 
 @NgModule({

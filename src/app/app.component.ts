@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { WeatherService } from 'src/services/weather.service';
-import { currentWeather } from 'src/services/weatherData';
+import { currentWeather, Forecast } from 'src/services/weatherData';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +13,7 @@ export class AppComponent implements OnInit{
   title = 'weather-app';
   searchResult: string;
   weatherData: currentWeather;
-  day1:any;
-  day2:any;
-  day3:any;
-  day4:any;
-  day5:any;
+  dailyForecast: Forecast;
   whatToWear: string;
   whatToDo: string;
 
@@ -27,27 +23,39 @@ export class AppComponent implements OnInit{
   ){};
 
   async ngOnInit(){
-    await this.weatherSvc.getWeatherForCity('Pensacola').subscribe(
-      data => {this.weatherData = data}
-    )
-    await this.weatherSvc.getForecast('Pensacola').subscribe(
-      data => {this.day1 = data, console.log(data)}
-    )
+    this.weatherData =await this.weatherSvc.getWeatherForCity('Pensacola')
+    this.dailyForecast =await this.weatherSvc.getForecast(30.4213, -87.2169)
   }
 
   async onSearch(){
-    const response = await this.weatherSvc.getWeatherForCity(this.searchResult).subscribe(
-      data => {this.weatherData = data}
-    )
+    this.weatherData = await this.weatherSvc.getWeatherForCity(this.searchResult)
+    this.getDaily()
+  }
+
+  async getDaily(){
+    this.dailyForecast = await this.weatherSvc.getForecast(this.weatherData.coord.lat,this.weatherData.coord.lon)
   }
 
   getImage(){
     return `https://openweathermap.org/img/wn/${this.weatherData.weather[0].icon}@2x.png`
   }
 
+  getForecastImage(icon: string){
+    return `https://openweathermap.org/img/wn/${icon}.png`
+  }
+
   convertTime(num: number){
     const date = new Date(num *1000)
     return date.toLocaleTimeString('en-US');
+  }
+
+  toNearestWhole(num: number){
+    return Math.ceil(num);
+  }
+
+  convertToDate(num: number){
+    const date = new Date(num*1000);
+    return date.toLocaleString('en-us', {weekday:'long'});
   }
 
   toTextualDescription(degree: number){

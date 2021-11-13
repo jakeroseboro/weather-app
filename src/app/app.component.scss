@@ -1,6 +1,12 @@
 .sunny{
     background: linear-gradient(to right, #56ccf2, #2f80ed);
     height: 100%;
+
+    .card{
+        width: 145px;
+        background: linear-gradient(to bottom, #fdc830, #f37335);
+    }
+
     .name{
         padding: 0px;
         margin: 0px;
@@ -26,20 +32,68 @@
         color: rgb(75, 69, 64);
         text-transform: uppercase;
     }
+    .desc{
+        padding-top: 30px;
+        @media screen and (max-width:900px) {
+            padding-top: 80px;
+          }
+        border-bottom: 1px solid rgb(75, 69, 64);
+    }
+    
+    .data{
+        border-bottom: 1px solid rgb(75, 69, 64);
+    }
+    p{
+        color:rgb(75, 69, 64);
+    }
 }
 
 .dark{
     
     background: linear-gradient(to right,#000000, #4c4ff2);
     height: 100%;
-    h1{
-        text-transform: capitalize;
-        color: rgba(255, 255, 255, 0.671);
-        padding-top: 25px;
+    .card{
+        width: 145px;
+        background: linear-gradient(to bottom, #b92b27, #1565c0);
     }
-    h3{
-        color:rgba(255, 255, 255, 0.671);
+    .name{
+        padding: 0px;
+        margin: 0px;
+        font-size: 20px;
+        color: rgb(216, 207, 199);
+        text-transform: uppercase;
+    }
+    .description{
+        padding: 0px;
+        margin: 0px;
+        font-size: 15px;
+        color: rgb(216, 207, 199);
         text-transform: capitalize;
+    }
+    .temp{
+        padding: 0px;
+        margin: 0px;
+        color: rgb(216, 207, 199);
+        font-size: 75px;
+    }
+    .ToDo{
+        font-size: 60px;
+        color: rgb(216, 207, 199);
+        text-transform: uppercase;
+    }
+    .desc{
+        padding-top: 30px;
+        @media screen and (max-width:900px) {
+            padding-top: 80px;
+          }
+        border-bottom: 1px solid rgb(216, 207, 199);
+    }
+    
+    .data{
+        border-bottom: 1px solid rgb(216, 207, 199);
+    }
+    p{
+        color: rgb(216, 207, 199);
     }
 }
 .top-col{
@@ -55,19 +109,17 @@ p{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.desc{
-    padding-top: 30px;
-    border-bottom: 1px solid rgb(75, 69, 64);
-}
-
-.data{
-    border-bottom: 1px solid rgb(75, 69, 64);
-}
-
 .feels-like{
     padding-top: 45px;
 }
 
 .row1{
     width: 750px;
+}
+
+.forecast{
+    padding: 10px;
+    @media screen and (max-width:900px) {
+        display: none;
+      }
 }

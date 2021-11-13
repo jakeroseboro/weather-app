@@ -1,34 +1,4 @@
-<div class="sunny" [ngClass]="getColor()"> 
-
-<!--  <div class="d-flex justify-content-center search-div">
-  
-  <div style="width: 500px;">
-    <div>
-      <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-          <input [(ngModel)]="searchResult" type="text" nz-input placeholder="Search by city" />
-      </nz-input-group>
-      <ng-template #suffixIconButton>
-          <button nz-button nzType="default" nzSearch (click)="onSearch()"><i nz-icon nzType="search" style="padding-bottom: 20px;"></i></button>
-      </ng-template>
-    </div>
-
-  </div>
-</div>
-
-<div class="d-flex justify-content-center">
-  
-</div>
-
-<div class="d-flex justify-content-center weather-container">
-    <div>
-      <div class="d-flex justify-content-left">
-       <h1 > {{weatherData.name}} <br> <h3> {{weatherData.weather[0].main}} - {{weatherData.weather[0].description}}</h3></h1>
-      </div>
-      <div class="d-flex justify-content-left">
-        <h3 class="temp">{{weatherData.main.temp}}&deg; </h3>
-      </div>
-    </div>
-</div>-->
+<div class="sunny" [ngClass]="getColor()">
 
 <div class="d-flex justify-content-center">
 <nz-row class="row1">
@@ -46,29 +16,40 @@
       <p class="description">{{weatherData.weather[0].main}} - {{weatherData.weather[0].description}}</p>
      </div>
      <div class="d-flex justify-content-between data">
-       <p class="temp">{{weatherData.main.temp}}&deg; </p>
+       <p class="temp">{{toNearestWhole(weatherData.main.temp)}}&deg; </p>
        <img [src]="getImage()">
      </div>
      <nz-row class="desc">
        <nz-col nzSpan="12">
-        <p>H: {{weatherData.main.temp_max}}  &deg;</p>
-        <p>L: {{weatherData.main.temp_min}}  &deg;</p>
+        <p>H: {{toNearestWhole(weatherData.main.temp_max)}}  &deg;</p>
+        <p>L: {{toNearestWhole(weatherData.main.temp_min)}}  &deg;</p>
         <p>Sunrise: {{convertTime(weatherData.sys.sunrise)}} </p>
         <p>Sunset: {{convertTime(weatherData.sys.sunset)}} </p>
       </nz-col>
       <nz-col nzSpan="12">
         <p>Feels like: {{weatherData.main.feels_like}} &deg;</p>
-        <p>Humidity: {{weatherData.main.humidity}}%</p>
-        <p>Pressure: {{weatherData.main.pressure * .0295}} inHg</p>
-        <p>Wind Speed: {{weatherData.wind.speed}} mph {{toTextualDescription(weatherData.wind.deg)}}</p>
+        <p>Humidity: {{toNearestWhole(weatherData.main.humidity)}}%</p>
+        <p>Pressure: {{toNearestWhole(weatherData.main.pressure * .0295)}} inHg</p>
+        <p>Wind Speed: {{toNearestWhole(weatherData.wind.speed)}} mph {{toTextualDescription(weatherData.wind.deg)}}</p>
       </nz-col>
      </nz-row>
   </nz-col >
 </nz-row>
 </div>
-<nz-row nzSpan="24">
-  <nz-col class="top-col">
-3
+<div class="d-flex justify-content-center">
+<nz-row >
+  <nz-col nzSpan="4" class="top-col">
+    <div class="d-flex">
+      <div *ngFor="let forecast of dailyForecast.daily" class="forecast">
+        <nz-card class="card">
+          <p>{{convertToDate(forecast.dt).toString()}}</p>
+          <img [src]="getForecastImage(forecast.weather[0].icon)">
+          <p>H: {{toNearestWhole(forecast.temp.max)}}</p>
+          <p>L: {{toNearestWhole(forecast.temp.min)}}</p>
+        </nz-card>
+      </div>
+    </div>
   </nz-col>
 </nz-row>
+</div>
 </div>
