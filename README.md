@@ -1,4 +1,8 @@
-# WeatherApp
+# Angular Weather App
+
+View live at https://jakes-weather.netlify.app/
+
+## WeatherApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.11.
 
