@@ -83,7 +83,7 @@
     }
     .desc{
         padding-top: 30px;
-        @media screen and (max-width:900px) {
+        @media screen and (max-width:700px) {
             padding-top: 80px;
           }
         border-bottom: 1px solid rgb(216, 207, 199);
@@ -98,6 +98,9 @@
 }
 .top-col{
     height: 500px;
+    @media screen and (max-width:700px) {
+        height: 100%;
+      }
     padding: 20px;
 }
 
